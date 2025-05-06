@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Workout History</h2>
+<ul>
+{% for workout in workouts %}
+<li>{{ workout[2] }} - {{ workout[3] }} mins - {{ workout[4] }} cal</li>
+{% endfor %}
+</ul>
+{% endblock %}

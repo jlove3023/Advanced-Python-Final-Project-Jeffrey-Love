@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Track Nutrition</h2>
+<form method="POST">
+    <label>Meal Description:</label>
+    <input type="text" name="meal" required><br>
+    <label>Calories:</label>
+    <input type="number" name="calories" required><br>
+    <label>Protein (g):</label>
+    <input type="number" name="protein" required><br>
+    <button type="submit">Add Meal</button>
+</form>
+
+<h3>Your Meals</h3>
+<ul>
+{% for meal in meals %}
+    <li>{{ meal[2] }} - {{ meal[3] }} cal - {{ meal[4] }} g protein</li>
+{% endfor %}
+</ul>
+{% endblock %}

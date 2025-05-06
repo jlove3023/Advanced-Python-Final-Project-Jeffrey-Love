@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Log a Workout</h2>
+<form method="POST">
+    <label>Workout Type:</label>
+    <input type="text" name="type" required><br>
+    <label>Duration (minutes):</label>
+    <input type="number" name="duration" required><br>
+    <label>Calories Burned:</label>
+    <input type="number" name="calories" required><br>
+    <button type="submit">Log Workout</button>
+</form>
+
+<h3>Your Workouts</h3>
+<ul>
+{% for workout in workouts %}
+    <li>{{ workout[2] }} - {{ workout[3] }} mins - {{ workout[4] }} cal</li>
+{% endfor %}
+</ul>
+{% endblock %}

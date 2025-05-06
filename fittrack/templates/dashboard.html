@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Welcome to your fitness dashboard!</p>
+<ul>
+    <li><a href="{{ url_for('workouts') }}">Log/View Workouts</a></li>
+    <li><a href="{{ url_for('history') }}">Workout History</a></li>
+    <li><a href="{{ url_for('nutrition') }}">Track Nutrition</a></li>
+    <li><a href="{{ url_for('streamlit_redirect') }}">View Progress Dashboard</a></li>
+</ul>
+{% endblock %}
