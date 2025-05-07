@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>📅 Workout History</h2>
+  <form method="get">
+    <label for="type">Filter by Type:</label>
+    <select name="type">
+      <option value="">All</option>
+      <option value="cardio">Cardio</option>
+      <option value="strength">Strength</option>
+      <option value="flexibility">Flexibility</option>
+    </select>
+    <input type="submit" value="Filter">
+  </form>
+  <table border="1">
+    <tr><th>Date</th><th>Type</th><th>Duration (min)</th><th>Calories</th></tr>
+    {% for workout in workouts %}
+      <tr>
+        <td>{{ workout['date'] }}</td>
+        <td>{{ workout['type'] }}</td>
+        <td>{{ workout['duration'] }}</td>
+        <td>{{ workout['calories'] }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

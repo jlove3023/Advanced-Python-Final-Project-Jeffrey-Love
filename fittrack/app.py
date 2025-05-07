@@ -77,6 +77,34 @@ def nutrition():
     meals = conn.execute("SELECT * FROM nutrition WHERE user_id=?", (session['user_id'],)).fetchall()
     return render_template('nutrition.html', meals=meals)
 
+@app.route('/workout_history')
+def workout_history():
+    filter_type = request.args.get('type', '')
+    db = get_db()
+    if filter_type:
+        workouts = db.execute('SELECT * FROM workouts WHERE type = ? ORDER BY date DESC', (filter_type,)).fetchall()
+    else:
+        workouts = db.execute('SELECT * FROM workouts ORDER BY date DESC').fetchall()
+    return render_template('workout_history.html', workouts=workouts)
+
+@app.route('/bmi', methods=['GET', 'POST'])
+def bmi():
+    bmi = status = None
+    if request.method == 'POST':
+        weight = float(request.form['weight'])
+        height_cm = float(request.form['height'])
+        height_m = height_cm / 100
+        bmi = round(weight / (height_m ** 2), 2)
+        if bmi < 18.5:
+            status = "Underweight"
+        elif 18.5 <= bmi < 25:
+            status = "Normal"
+        elif 25 <= bmi < 30:
+            status = "Overweight"
+        else:
+            status = "Obese"
+    return render_template('bmi.html', bmi=bmi, status=status)
+
 @app.route('/logout')
 def logout():
     session.clear()
